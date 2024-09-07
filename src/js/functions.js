@@ -14,11 +14,10 @@ export function orderByProps(obj, order){
     });
 }
 
-export function getSpecialAttack(character){
-    for (let item of character.special){
-      if ('description' in item === false) {
-        item.description = 'Описание недоступно';
-      }
-    }
-    return character.special;
-  }
+export function getSpecialAttack({special}){
+    return special.map(({
+        id, name, icon, description = 'Описание недоступно'
+      }) => ({
+        id, name, icon, description, 
+      }));
+}
